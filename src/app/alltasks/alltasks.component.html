@@ -1,0 +1,18 @@
+<!-- home.component.html -->
+
+<div class="tasklist-title-container">
+     Task List
+</div>
+
+<div class="scroll" *ngIf="tasks.length > 0; else noTasks">
+   
+    <div *ngFor="let task of tasks" class="task-container">
+        <h3>{{ task.name }}</h3>
+        <p>{{ task.description }}</p>
+        <p style="text-align: right; text-decoration: underline">Due Date: {{ task.dueDate }}</p>
+    </div>
+</div>
+
+<ng-template #noTasks>
+    <p>No tasks available.</p>
+</ng-template>

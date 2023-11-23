@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+/* styles.css */
+
+/* styles.css */
+
+body {
+    background-image:url("./assets/green-background.jpg");
+    background-size:cover;
+    font-family: monospace, Roboto, -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+
+   
+   
+  }
+  
+  
