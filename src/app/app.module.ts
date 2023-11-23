@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AlltasksComponent } from './alltasks/alltasks.component';
+import { CreateTaskButtonComponent } from './create-task-button/create-task-button.component';
+import { EditTaskButtonComponent } from './edit-task-button/edit-task-button.component';
 
 
 // NgModule decorator to define the module
@@ -18,6 +20,8 @@ import { AlltasksComponent } from './alltasks/alltasks.component';
     AlltasksComponent,
     AppComponent,
     HomeComponent,
+    EditTaskButtonComponent,
+    CreateTaskButtonComponent,
     
   ],
   imports: [
