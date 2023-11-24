@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularTest';
+
+
+  onTaskCreated() {
+    // This function can be used to perform any action after a task is created
+    console.log('Task created! Refresh or update task list.');
+  }
 }

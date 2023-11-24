@@ -9,31 +9,40 @@ import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AlltasksComponent } from './alltasks/alltasks.component';
-import { CreateTaskButtonComponent } from './create-task-button/create-task-button.component';
+
 import { EditTaskButtonComponent } from './edit-task-button/edit-task-button.component';
+import { SortDateButtonComponent } from './sort-date-button/sort-date-button.component';
+
+import { MyApiService } from './my-api.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-// NgModule decorator to define the module
+
+
 @NgModule({
+  providers: [MyApiService],
   declarations: [
-    // Declare all your components here
+    
     AlltasksComponent,
     AppComponent,
     HomeComponent,
     EditTaskButtonComponent,
-    CreateTaskButtonComponent,
+    SortDateButtonComponent,
     
   ],
   imports: [
-    // Import other Angular modules that your app depends on
+  
     BrowserModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+  
   ],
   bootstrap: [
-    // The main component that should be bootstrapped when the app starts
+   
     AppComponent
   ]
 })
-// Export the module class
+
 export class AppModule { }

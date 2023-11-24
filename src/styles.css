@@ -1,15 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
-/* styles.css */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-/* styles.css */
 
 body {
-    background-image:url("./assets/green-background.jpg");
+    background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
     background-size:cover;
     font-family: monospace, Roboto, -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
-
-   
-   
   }
   
+
   
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
