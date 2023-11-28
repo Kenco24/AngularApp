@@ -1,16 +1,16 @@
 <!-- home.component.html -->
-
 <div class="tasklist-title-container">
     <span class="title">Task List </span>
     <div class="button-container">
       <app-sort-date-button (sortButtonClick)="handleSortButtonClick($event)"></app-sort-date-button>
     </div>
   </div>
-  
 
 <div class="scroll" *ngIf="tasks.length > 0; else noTasks">
    
     <div *ngFor="let task of tasks" class="task-container">
+        <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+
         <h3>{{ task.name }}</h3>
         <p>{{ task.description }}</p>
         <p class="due-date">Due Date: {{ task.dueDate }}</p>

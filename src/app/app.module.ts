@@ -16,7 +16,9 @@ import { SortDateButtonComponent } from './sort-date-button/sort-date-button.com
 import { MyApiService } from './my-api.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { DeleteTaskButtonComponent } from './delete-task-button/delete-task-button.component';
+import { ButtonContainerComponent } from './button-container/button-container.component';
+import { CreateTaskButtonComponent } from './create-task-button/create-task-button.component';
 
 
 
@@ -29,6 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     EditTaskButtonComponent,
     SortDateButtonComponent,
+    DeleteTaskButtonComponent,
+    ButtonContainerComponent,
+    CreateTaskButtonComponent
+
     
   ],
   imports: [
