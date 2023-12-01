@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,9 +9,14 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 })
 export class ButtonContainerComponent {
 
+
+
+  @Output() createTaskClick = new EventEmitter<void>();
+
    isDropdownOpen = false;
    isIconExpanded = false;
    faBars = faBars;
+
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;

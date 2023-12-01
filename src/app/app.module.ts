@@ -20,6 +20,7 @@ import { DeleteTaskButtonComponent } from './delete-task-button/delete-task-butt
 import { ButtonContainerComponent } from './button-container/button-container.component';
 import { CreateTaskButtonComponent } from './create-task-button/create-task-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreateTaskFormComponent } from './create-task-form/create-task-form.component';
 
 
 
@@ -34,7 +35,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SortDateButtonComponent,
     DeleteTaskButtonComponent,
     ButtonContainerComponent,
-    CreateTaskButtonComponent
+    CreateTaskButtonComponent,
+    CreateTaskFormComponent
 
     
   ],

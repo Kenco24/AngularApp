@@ -1,8 +1,6 @@
-// create-task-form.component.ts
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { MyApiService } from '../my-api.service';
-import { FormsModule } from '@angular/forms';
+// app-create-task-form.component.ts
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MyApiService } from '../my-api.service'; // Update the path based on your actual structure
 
 @Component({
   selector: 'app-create-task-form',
@@ -10,20 +8,31 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./create-task-form.component.css']
 })
 export class CreateTaskFormComponent {
-  newTask: any = {}; // Update the type based on your Task model
+  @Input() showForm: boolean = false;
+  @Output() formSubmitted = new EventEmitter<any>();
 
-  constructor(private myApiService: MyApiService, public dialogRef: MatDialogRef<CreateTaskFormComponent>) {}
+  // Inject the MyApiService in the constructor
+  constructor(private myApiService: MyApiService) {}
 
-  createTask(): void {
-    this.myApiService.addTask(this.newTask).subscribe(
-      (createdTask: any) => {
-        console.log('New task created:', createdTask);
-        this.dialogRef.close(); // Close the dialog after successful creation
+  onSubmit(formValue: any) {
+    // Ensure that the keys in formValue match the expected properties in your Spring Boot controller
+    const newTaskRequest = {
+      task: formValue.task,
+      name: formValue.name,
+      description: formValue.description,
+      dueDate: formValue.dueDate,
+    };
+  
+    this.myApiService.addTask(newTaskRequest).subscribe(
+      (response) => {
+        console.log('Task created successfully:', response);
+        // Handle success
       },
-      (error: any) => {
+      (error) => {
         console.error('Error creating task:', error);
-        // Handle error as needed
+        // Handle error
       }
     );
   }
+  
 }

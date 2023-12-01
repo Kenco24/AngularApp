@@ -1,7 +1,11 @@
+<!-- home.component.html -->
 <div class="container">
-    <div class="flex-container">
-      <app-alltasks></app-alltasks>
-      <app-button-container></app-button-container>
-    </div>
+  <div class="flex-container">
+    <app-alltasks></app-alltasks>
+    <app-button-container (createTaskClick)="showCreateTaskForm()"></app-button-container>
+    <app-create-task-form [showForm]="isCreateTaskFormVisible" (formSubmitted)="createTask($event)"></app-create-task-form>
+
+    
   </div>
-  
+  <!-- Pass the form submission event to createTask method -->
+</div>

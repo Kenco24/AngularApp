@@ -1,6 +1,6 @@
 // home.component.ts
 import { Component } from '@angular/core';
-import { MyApiService } from '../my-api.service'; // Update the path based on your actual structure
+import { MyApiService } from '../my-api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +10,29 @@ import { MyApiService } from '../my-api.service'; // Update the path based on yo
 export class HomeComponent {
   constructor(private apiService: MyApiService) {}
 
+  isCreateTaskFormVisible: boolean = false; // Make sure this is initially set to false
+
+  showCreateTaskForm() {
+    this.isCreateTaskFormVisible = true;
+    console.log("showcreatetaskform method called")
+  }
+
   onTaskCreated() {
-    // Optionally, you can refresh or update the task list
-    // For example, you can call a method to fetch and update the tasks
     this.refreshTaskList();
+  }
+
+  createTask(newTask: any) {
+    // Assuming you have a method in your MyApiService to create a new task
+    this.apiService.addTask(newTask).subscribe(
+      (response) => {
+        console.log('Task created successfully:', response);
+        this.isCreateTaskFormVisible = false; // Hide the form after creating the task
+        this.refreshTaskList();
+      },
+      (error) => {
+        console.error('Error creating task:', error);
+      }
+    );
   }
 
   private refreshTaskList() {

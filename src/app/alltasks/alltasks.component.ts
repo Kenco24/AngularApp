@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyApiService } from '../my-api.service';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-alltasks',
@@ -9,8 +11,13 @@ import { MyApiService } from '../my-api.service';
 export class AlltasksComponent implements OnInit {
   tasks: any[] = [];
   private sortDirection: string = 'asc'; // Default sorting direction
+ 
+
+
 
   constructor(private myApiService: MyApiService) {}
+
+  
 
   ngOnInit(): void {
     this.loadTasks();
@@ -26,6 +33,10 @@ export class AlltasksComponent implements OnInit {
       }
     );
   }
+
+
+    
+  
   sortTasksByDueDate(): void {
     this.tasks.sort((a, b) => {
       const dateA = new Date(a.dueDate);
