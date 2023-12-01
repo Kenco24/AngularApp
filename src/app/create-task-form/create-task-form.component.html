@@ -1,0 +1,13 @@
+<form (ngSubmit)="createTask()">
+    <!-- Add your form fields here -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="newTask.name" required>
+    <label for="task">Task:</label>
+    <input type="text" id="task" name="task" [(ngModel)]="newTask.task" required>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" [(ngModel)]="newTask.description"></textarea>
+    <label for="dueDate">Due Date:</label>
+    <input type="text" id="dueDate" name="dueDate" [(ngModel)]="newTask.dueDate" required>
+    
+    <button type="submit">Apply</button>
+  </form>

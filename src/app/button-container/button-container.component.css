@@ -1,11 +1,49 @@
-.container{
-    background-color:red;
-    width:190px;
-    height: 280px;
-    padding:10px;
-    margin:20px;
-    border-radius: 30px;
+.container {
+    position: relative;
+    display: inline-block;
+   
+}
 
+.dropbtn {
+    padding: 10px;
+    cursor: pointer;
+    background-color: green; /* Set the initial background color */
+    color:white; /* Set the text color */
+    border: 1px solid rgb(48, 100, 48); /* Add border for better visibility */
+    border-radius: 15px;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    margin: 20px;
+    text-align: center;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out; /* Add transitions for background and text color */
+}
 
+.dropdown-content {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    position: absolute;
+    background-color: rgb(106, 173, 106);; /* Set the background color for dropdown */
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
 
+.container.clicked {
+    background-color: rgb(106, 173, 106);; /* Set the clicked background color to match dropdown */
+}
+
+.container.clicked .dropbtn {
+    color: white; /* Set the text color to match dropdown */
+}
+
+.container.clicked .dropdown-content.slide-down {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.container.clicked .dropdown-content.slide-up {
+    opacity: 0;
+    transform: translateY(-20px);
 }
