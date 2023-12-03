@@ -11,11 +11,11 @@ export class CreateTaskFormComponent {
   @Input() showForm: boolean = false;
   @Output() formSubmitted = new EventEmitter<any>();
 
-  // Inject the MyApiService in the constructor
+
   constructor(private myApiService: MyApiService) {}
 
   onSubmit(formValue: any) {
-    // Ensure that the keys in formValue match the expected properties in your Spring Boot controller
+  
     const newTaskRequest = {
       task: formValue.task,
       name: formValue.name,
@@ -27,12 +27,14 @@ export class CreateTaskFormComponent {
       (response) => {
         console.log('Task created successfully:', response);
         // Handle success
+        
       },
       (error) => {
         console.error('Error creating task:', error);
         // Handle error
       }
     );
+    this.formSubmitted.emit(formValue);
   }
   
 }

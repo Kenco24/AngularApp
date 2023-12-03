@@ -36,7 +36,13 @@ div.scroll {
    position: absolute;
    left:450px;
 }
+.no-tasks-status{
+  font-size:30px;
 
+  position:relative;
+  top:50%;
+  text-align: center;
+}
 
 .due-date{
         font-size:15px;

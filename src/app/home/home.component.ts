@@ -33,6 +33,7 @@ export class HomeComponent {
         console.error('Error creating task:', error);
       }
     );
+    this.isCreateTaskFormVisible = false;
   }
 
   private refreshTaskList() {

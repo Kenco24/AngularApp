@@ -4,8 +4,6 @@
     <app-alltasks></app-alltasks>
     <app-button-container (createTaskClick)="showCreateTaskForm()"></app-button-container>
     <app-create-task-form [showForm]="isCreateTaskFormVisible" (formSubmitted)="createTask($event)"></app-create-task-form>
-
-    
+    <app-edit-task-form></app-edit-task-form>
   </div>
-  <!-- Pass the form submission event to createTask method -->
 </div>

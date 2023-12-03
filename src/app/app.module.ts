@@ -21,6 +21,7 @@ import { ButtonContainerComponent } from './button-container/button-container.co
 import { CreateTaskButtonComponent } from './create-task-button/create-task-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateTaskFormComponent } from './create-task-form/create-task-form.component';
+import { EditTaskFormComponent } from './edit-task-form/edit-task-form.component';
 
 
 
@@ -36,7 +37,8 @@ import { CreateTaskFormComponent } from './create-task-form/create-task-form.com
     DeleteTaskButtonComponent,
     ButtonContainerComponent,
     CreateTaskButtonComponent,
-    CreateTaskFormComponent
+    CreateTaskFormComponent,
+    EditTaskFormComponent
 
     
   ],
