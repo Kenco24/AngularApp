@@ -1,6 +1,6 @@
 .container {
    display: flex;
-   justify-content: space-between; /* Adjust as needed */
+   justify-content: space-between;
  }
  
  .flex-container {

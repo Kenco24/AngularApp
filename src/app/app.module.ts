@@ -22,6 +22,8 @@ import { CreateTaskButtonComponent } from './create-task-button/create-task-butt
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateTaskFormComponent } from './create-task-form/create-task-form.component';
 import { EditTaskFormComponent } from './edit-task-form/edit-task-form.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -38,7 +40,8 @@ import { EditTaskFormComponent } from './edit-task-form/edit-task-form.component
     ButtonContainerComponent,
     CreateTaskButtonComponent,
     CreateTaskFormComponent,
-    EditTaskFormComponent
+    EditTaskFormComponent,
+   
 
     
   ],
@@ -49,7 +52,11 @@ import { EditTaskFormComponent } from './edit-task-form/edit-task-form.component
     HttpClientModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
+    
+    
+ 
   
   ],
   bootstrap: [

@@ -1,4 +1,4 @@
-/* app-create-task-form.component.css */
+
 .wrapper {
     margin-left: 200px;
   }
@@ -8,9 +8,9 @@
     border: 1px solid black;
     margin: 20px;
     padding: 20px;
-    width: 300px; /* Set a fixed width or adjust as needed */
-    position: relative; /* Use relative positioning within the wrapper */
-    top: 20px; /* Adjust the top position as needed */
+    width: 300px; 
+    position: relative; 
+    top: 20px; 
   }
   
   .form-group {

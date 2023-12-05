@@ -1,29 +1,31 @@
-
-<div class="tasklist-title-container">
+<div class="container">
+  <div class="tasklist-title-container">
     <span class="title">Task List </span>
     <div class="button-container">
       <app-sort-date-button (sortButtonClick)="handleSortButtonClick($event)"></app-sort-date-button>
     </div>
   </div>
 
-<div class="scroll" *ngIf="tasks.length > 0; else noTasks">
-   
-    <div *ngFor="let task of tasks" class="task-container">
-        <a href="#"></a>
-        <h3 style="text-decoration:underline">{{ task.name }}</h3>
-        <p>{{ task.description }}</p>
-        <p class="due-date">Due Date: {{ task.dueDate | date:'medium' }}</p>
-        <p class="created-date">Created on: {{ task.timeCreated | date:'medium' }}</p>
+  <div *ngIf="pagedTasks.length > 0; else noTasks">
+    <div *ngFor="let task of pagedTasks" class="task-container">
+      <a href="#"></a>
+      <h3 style="text-decoration:underline">{{ task.name }}</h3>
+      <p>{{ task.description }}</p>
+      <p class="due-date">Due Date: {{ task.dueDate | date:'medium' }}</p>
+      <p class="created-date">Created on: {{ task.timeCreated | date:'medium' }}</p>
     </div>
+    <div class="paginator-container">
+      <mat-paginator [length]="tasks.length" [pageSize]="itemsPerPage" (page)="updatePagedTasks($event)">
+        
+      </mat-paginator>
+
+      
+    </div>
+  </div>
 </div>
 
 <ng-template #noTasks>
-    <div class="scroll">
-        <div class="no-tasks-status">
-            <p>No tasks available. Please refresh the site</p>
-        </div>
-    
-    </div>
-   
+  <div class="no-tasks-status">
+    <p>No tasks available. Please refresh the site</p>
+  </div>
 </ng-template>
-

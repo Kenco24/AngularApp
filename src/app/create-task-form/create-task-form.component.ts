@@ -1,6 +1,6 @@
 // app-create-task-form.component.ts
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MyApiService } from '../my-api.service'; // Update the path based on your actual structure
+import { MyApiService } from '../my-api.service'; 
 
 @Component({
   selector: 'app-create-task-form',
@@ -26,12 +26,12 @@ export class CreateTaskFormComponent {
     this.myApiService.addTask(newTaskRequest).subscribe(
       (response) => {
         console.log('Task created successfully:', response);
-        // Handle success
+    
         
       },
       (error) => {
         console.error('Error creating task:', error);
-        // Handle error
+        
       }
     );
     this.formSubmitted.emit(formValue);
