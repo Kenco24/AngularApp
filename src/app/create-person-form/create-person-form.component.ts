@@ -1,11 +1,47 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// create-person-form.component.ts
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MyApiService } from '../my-api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-person-form',
   templateUrl: './create-person-form.component.html',
-  styleUrl: './create-person-form.component.css'
+  styleUrls: ['./create-person-form.component.css']
 })
 export class CreatePersonFormComponent {
+  @Input() showForm: boolean = false;
+  @Output() formSubmitted = new EventEmitter<any>();
 
+  personFormData: any = {};
+
+  constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {}
+  
+  onSubmit() {
+    // Use MyApiService to add a new person
+    this.myApiService.addPerson(this.personFormData).subscribe(
+      (response) => {
+        console.log('Person created successfully:', response);
+        this.showSnackbar('Person created successfully');
+        this.formSubmitted.emit(this.personFormData);
+        this.resetForm();
+      },
+      (error) => {
+        console.error('Error creating person:', error);
+        this.showSnackbar('Error creating person. Please try again.');
+      }
+    );
+  }
+
+  resetForm() {
+    // Reset the form data after submission
+    this.personFormData = {};
+  }
+
+  private showSnackbar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+    });
+  }
 }

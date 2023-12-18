@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-person-button',
@@ -7,5 +6,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-person-button.component.css'
 })
 export class CreatePersonButtonComponent {
+  @Output() createPersonClick = new EventEmitter<void>();
 
+  onClick() {
+    this.createPersonClick.emit();
+  }
 }

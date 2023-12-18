@@ -51,9 +51,26 @@
         font-size:15px;
         text-align: right; 
         text-decoration: underline;
-
-    
 }
+.created-date{
+  text-align: right;
+}
+.task-desc{
+  width:60%;
+  height: 150px;
+  background-color: rgb(100, 182, 100);
+  
+}
+.button-container {
+  display: flex;
+}
+button{
+  background-color: green;
+  color:white;
 
-
+  margin-left:0px;
+  border-radius: 15px;
+  width: 110px;
+  height: 30px;
+}
   

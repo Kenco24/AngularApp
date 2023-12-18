@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MyApiService } from '../my-api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
+
+
 
 @Component({
   selector: 'app-alltasks',
@@ -20,14 +23,14 @@ export class AlltasksComponent implements OnInit, OnDestroy {
 
   private tasksSubscription: Subscription | undefined;
 
-  constructor(private myApiService: MyApiService) {}
+  constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {} 
 
   ngOnInit(): void {
     this.loadTasks();
   }
 
   loadTasks(): void {
-    // Unsubscribe from previous subscription to avoid memory leaks
+    
     if (this.tasksSubscription) {
       this.tasksSubscription.unsubscribe();
     }
@@ -36,9 +39,12 @@ export class AlltasksComponent implements OnInit, OnDestroy {
       (data: any[]) => {
         this.tasks = data;
         this.sortTasksByDueDate();
+        this.showSnackbar('Tasks reloaded successfully.');
       },
       (error: any) => {
         console.error('Error loading tasks:', error);
+        this.showSnackbar('Error reloading tasks. Please try again.'); 
+
       }
     );
   }
@@ -74,10 +80,23 @@ export class AlltasksComponent implements OnInit, OnDestroy {
     };
   }
 
+  reloadTasks(): void {
+    this.loadTasks();
+
+  }
+
   ngOnDestroy(): void {
    
     if (this.tasksSubscription) {
       this.tasksSubscription.unsubscribe();
     }
+  }
+
+  showSnackbar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000, // 3 seconds
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+    });
   }
 }
