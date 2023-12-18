@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MyApiService } from '../my-api.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-alltasks',
   templateUrl: './alltasks.component.html',
   styleUrls: ['./alltasks.component.css'],
 })
-export class AlltasksComponent implements OnInit {
+export class AlltasksComponent implements OnInit, OnDestroy {
   tasks: any[] = [];
   pagedTasks: any[] = [];
   private sortDirection: string = 'asc';
@@ -17,6 +18,8 @@ export class AlltasksComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  private tasksSubscription: Subscription | undefined;
+
   constructor(private myApiService: MyApiService) {}
 
   ngOnInit(): void {
@@ -24,7 +27,12 @@ export class AlltasksComponent implements OnInit {
   }
 
   loadTasks(): void {
-    this.myApiService.getTasks().subscribe(
+    // Unsubscribe from previous subscription to avoid memory leaks
+    if (this.tasksSubscription) {
+      this.tasksSubscription.unsubscribe();
+    }
+
+    this.tasksSubscription = this.myApiService.getTasks().subscribe(
       (data: any[]) => {
         this.tasks = data;
         this.sortTasksByDueDate();
@@ -60,10 +68,16 @@ export class AlltasksComponent implements OnInit {
     const startIndex = pageIndex * this.itemsPerPage;
     this.pagedTasks = this.tasks.slice(startIndex, startIndex + this.itemsPerPage);
 
-    // Calculate paginatorInfo
     this.paginatorInfo = {
       startIndex: startIndex,
       endIndex: Math.min(startIndex + this.itemsPerPage, this.tasks.length),
     };
+  }
+
+  ngOnDestroy(): void {
+   
+    if (this.tasksSubscription) {
+      this.tasksSubscription.unsubscribe();
+    }
   }
 }

@@ -3,6 +3,7 @@
   <div class="flex-container">
     <app-alltasks></app-alltasks>
     <app-button-container (createTaskClick)="showCreateTaskForm()"></app-button-container>
+    <app-all-persons></app-all-persons>
     <app-create-task-form [showForm]="isCreateTaskFormVisible" (formSubmitted)="createTask($event)"></app-create-task-form>
     <app-edit-task-form></app-edit-task-form>
   </div>

@@ -23,6 +23,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreateTaskFormComponent } from './create-task-form/create-task-form.component';
 import { EditTaskFormComponent } from './edit-task-form/edit-task-form.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AllPersonsComponent} from './all-persons/all-persons.component';
+import { CreatePersonButtonComponent } from './create-person-button/create-person-button.component';
+import { CreatePersonFormComponent } from './create-person-form/create-person-form.component';
 
 
 
@@ -41,6 +44,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CreateTaskButtonComponent,
     CreateTaskFormComponent,
     EditTaskFormComponent,
+    AllPersonsComponent,
+    CreatePersonButtonComponent,
+    CreatePersonFormComponent
+    
    
 
     
