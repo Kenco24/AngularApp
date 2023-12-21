@@ -1,15 +1,10 @@
 /* create-person-form.component.css */
-.person-form-wrapper {
-    width: 300px;
-    margin: 20px auto;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
   
   .create-person-form {
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to bottom, #54c956, #456d47);
+    padding:10px;
   }
   
   .form-title {

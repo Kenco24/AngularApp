@@ -4,7 +4,7 @@
     <app-alltasks></app-alltasks>
     <app-button-container (createTaskClick)="showCreateTaskForm()" (createPersonClick)="showCreatePersonForm()"></app-button-container>
     <app-all-persons></app-all-persons>
-    <app-create-task-form [showForm]="isCreateTaskFormVisible" (formSubmitted)="createTask()"></app-create-task-form>
+    <app-create-task-form [showForm]="isCreateTaskFormVisible" (formSubmitted)="createTask()" ></app-create-task-form>
     <app-create-person-form [showForm]="isCreatePersonFormVisible" (formSubmitted)="createPerson()" ></app-create-person-form>
   </div>
 </div>

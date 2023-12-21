@@ -6,30 +6,38 @@
       <app-sort-date-button (sortButtonClick)="handleSortButtonClick($event)"></app-sort-date-button>
       
     </div>
+   
+   
   </div>
 
   <div *ngIf="pagedTasks.length > 0; else noTasks">
+
+    <div class="paginator-container">
+      <mat-paginator [length]="tasks.length" [pageSize]="itemsPerPage" (page)="updatePagedTasks($event)"></mat-paginator>
+    </div>
+
     <div *ngFor="let task of pagedTasks" class="task-container">
-      <a href="#"></a>
+      <button mat-icon-button color="warn" (click)="deleteTask(task)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <h4>Task ID: #{{task.id}}</h4>
       <h2 style="text-decoration:underline">{{ task.name }}</h2>
       <h3><strong>{{task.task}}</strong></h3>
       <p class="task-desc">{{ task.description }}</p>
      
-      <p class="due-date">Due Date: {{ task.dueDate | date:'medium' }}</p>
-      <p class="created-date">Created on: {{ task.timeCreated | date:'medium' }}</p>
-    </div>
-    <div class="paginator-container">
-      <mat-paginator [length]="tasks.length" [pageSize]="itemsPerPage" (page)="updatePagedTasks($event)">
-        
-      </mat-paginator>
-
+      <div class="date-container">
+        <p class="due-date"><strong>Due Date: </strong>{{ task.dueDate | date:'medium' }}</p>
+        <p class="created-date">Created on: {{ task.timeCreated | date:'medium' }}</p>
+      </div>
       
     </div>
+    
+    
   </div>
 </div>
 
 <ng-template #noTasks>
   <div class="no-tasks-status">
-    <p>No tasks available. Please refresh the site</p>
+    <p id="notasksP">No tasks available. Please refresh the site</p>
   </div>
 </ng-template>

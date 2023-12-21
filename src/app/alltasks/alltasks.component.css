@@ -2,10 +2,6 @@
     background-image:url("../../assets/green-background.jpg");
 
     background-size:cover;
-    
-    
- 
-
     padding: 20px;
     position: relative; 
 }
@@ -16,11 +12,12 @@
 
 .task-container {
     
-    width:975px;
+    width:600px;
     background: linear-gradient(to bottom, #54c956, #456d47);
     border: 1px black solid;
     margin: 20px;
     padding: 20px;
+    height: 300px;
 }
 .tasklist-title-container {
     border-bottom: solid 5px green;
@@ -30,7 +27,7 @@
   
     margin:30px;
 
-    width: 1000px;
+    width: 630px;
     height: 75px;
     background-color: rgb(106, 173, 106);
     font-size: 25px;
@@ -48,21 +45,19 @@
 }
 
 .due-date{
-        font-size:15px;
-        text-align: right; 
-        text-decoration: underline;
+  font-size:15px;
+  text-decoration: underline;
 }
-.created-date{
-  text-align: right;
-}
+
 .task-desc{
-  width:60%;
+  width:55%;
   height: 150px;
   background-color: rgb(100, 182, 100);
   
 }
 .button-container {
   display: flex;
+  margin:20px;
 }
 button{
   background-color: green;
@@ -73,4 +68,9 @@ button{
   width: 110px;
   height: 30px;
 }
-  
+
+.date-container{
+  position:relative;
+  left:60%;
+  top:-125px;
+}

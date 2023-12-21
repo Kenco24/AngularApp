@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MyApiService } from '../my-api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar'; 
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -15,19 +17,26 @@ export class AlltasksComponent implements OnInit, OnDestroy {
   tasks: any[] = [];
   pagedTasks: any[] = [];
   private sortDirection: string = 'asc';
-  currentPage = 1;
   itemsPerPage = 5;
   paginatorInfo: { startIndex: number; endIndex: number } = { startIndex: 0, endIndex: 0 };
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   private tasksSubscription: Subscription | undefined;
 
-  constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {} 
+  constructor(
+    private myApiService: MyApiService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog  // Ensure this line is present
+  ) {}
 
   ngOnInit(): void {
     this.loadTasks();
+   
   }
+
+
 
   loadTasks(): void {
     
@@ -40,11 +49,15 @@ export class AlltasksComponent implements OnInit, OnDestroy {
         this.tasks = data;
         this.sortTasksByDueDate();
         this.showSnackbar('Tasks reloaded successfully.');
+        const noTasksPara=document.getElementById("notasksP")!;
+        noTasksPara.innerHTML="Empty list , create some tasks";
+
       },
       (error: any) => {
         console.error('Error loading tasks:', error);
-        this.showSnackbar('Error reloading tasks. Please try again.'); 
-
+        this.showSnackbar('Error reloading tasks. Please try again.');
+        const noTasksPara=document.getElementById("notasksP")!;
+        noTasksPara.innerHTML="Error tasks not loaded";
       }
     );
   }
@@ -80,13 +93,42 @@ export class AlltasksComponent implements OnInit, OnDestroy {
     };
   }
 
+  deleteTask(task: any): void {
+    console.log('Deleting task:', task);
+  
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+    });
+  
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        
+        console.log('User clicked Yes');
+        
+      
+        this.myApiService.deleteTask(task.id).subscribe(
+          () => {
+          
+            this.loadTasks();
+            this.showSnackbar('Task deleted successfully.');
+          },
+          (error) => {
+            console.error('Error deleting task:', error);
+            this.showSnackbar('Error deleting task. Please try again.');
+          }
+        );
+      } else {
+        console.log('User clicked No');
+      }
+    });
+  }
+  
+
   reloadTasks(): void {
     this.loadTasks();
-
   }
 
   ngOnDestroy(): void {
-   
     if (this.tasksSubscription) {
       this.tasksSubscription.unsubscribe();
     }
@@ -94,9 +136,10 @@ export class AlltasksComponent implements OnInit, OnDestroy {
 
   showSnackbar(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 3000, // 3 seconds
+      duration: 3000,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
     });
   }
+  
 }

@@ -61,7 +61,7 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
 
   private showSnackbar(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 3000, // 3 seconds
+      duration: 3000, 
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
     });
