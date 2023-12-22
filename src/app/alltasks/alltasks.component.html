@@ -17,9 +17,7 @@
     </div>
 
     <div *ngFor="let task of pagedTasks" class="task-container">
-      <button mat-icon-button color="warn" (click)="deleteTask(task)">
-        <mat-icon>delete</mat-icon>
-      </button>
+      
       <h4>Task ID: #{{task.id}}</h4>
       <h2 style="text-decoration:underline">{{ task.name }}</h2>
       <h3><strong>{{task.task}}</strong></h3>
@@ -28,6 +26,9 @@
       <div class="date-container">
         <p class="due-date"><strong>Due Date: </strong>{{ task.dueDate | date:'medium' }}</p>
         <p class="created-date">Created on: {{ task.timeCreated | date:'medium' }}</p>
+        <button class="delete-button"mat-icon-button color="warn" (click)="deleteTask(task)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
       
     </div>
