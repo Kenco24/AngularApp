@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { EditTaskDialogComponent } from '../edit-task-dialog/edit-task-dialog.component';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class AlltasksComponent implements OnInit, OnDestroy {
   tasks: any[] = [];
   pagedTasks: any[] = [];
   private sortDirection: string = 'asc';
-  itemsPerPage = 5;
+  itemsPerPage = 3;
   paginatorInfo: { startIndex: number; endIndex: number } = { startIndex: 0, endIndex: 0 };
 
 
@@ -28,7 +28,7 @@ export class AlltasksComponent implements OnInit, OnDestroy {
   constructor(
     private myApiService: MyApiService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog  // Ensure this line is present
+    private dialog: MatDialog  
   ) {}
 
   ngOnInit(): void {
@@ -119,6 +119,33 @@ export class AlltasksComponent implements OnInit, OnDestroy {
         );
       } else {
         console.log('User clicked No');
+      }
+    });
+
+  }
+  editTask(task: any): void {
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {
+      width: '400px',
+      data: { taskData: task },
+    });
+  
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+     
+        const taskId = task.id;
+        const updatedTaskData = result;
+  
+     
+        this.myApiService.editTask(taskId, updatedTaskData).subscribe(
+          () => {
+            this.showSnackbar('Task updated successfully');
+            this.loadTasks();
+          },
+          (error: any) => {
+            console.error('Error updating task:', error);
+            this.showSnackbar('Error updating task. Please try again.');
+          }
+        );
       }
     });
   }

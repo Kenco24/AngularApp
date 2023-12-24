@@ -1,4 +1,3 @@
-// button-container.component.ts
 import { Component, Output, EventEmitter } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,6 +9,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 export class ButtonContainerComponent {
   @Output() createTaskClick = new EventEmitter<void>();
   @Output() createPersonClick = new EventEmitter<void>();
+  @Output() dropdownClosed = new EventEmitter<void>();
+
 
   isDropdownOpen = false;
   isIconExpanded = false;
@@ -19,5 +20,10 @@ export class ButtonContainerComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
     this.isIconExpanded = !this.isIconExpanded;
     console.log(`button clicked ` + this.isDropdownOpen);
+
+    if (!this.isDropdownOpen) {
+      this.dropdownClosed.emit();
+    }
   }
+  
 }

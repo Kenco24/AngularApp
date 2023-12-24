@@ -1,19 +1,27 @@
-<!-- all-persons.component.html -->
 <div class="container">
+  <div class="header">
     <h2>All people</h2>
-    <div *ngIf="persons.length > 0; else noPersons">
-      <div *ngFor="let person of persons" class="person-container">
-        <h3>{{ person.name }}</h3>
-        <p><strong>Email:</strong> {{ person.email }}</p>
-        <p><strong>Phone:</strong> {{ person.phone }}</p>
-        <p><strong>Location:</strong> {{ person.location }}</p>
-      </div>
+    <button mat-icon-button color="primary" (click)="reloadPersons()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="persons.length > 0; else noPersons">
+    <div *ngFor="let person of persons" class="person-container">
+      <h2>{{ person.name }}</h2>
+      <p><strong>Email:</strong> {{ person.email }}</p>
+      <p><strong>Phone:</strong> {{ person.phone }}</p>
+      <p><strong>Location:</strong> {{ person.location }}</p>
+      <p><strong>ID:</strong> #{{person.id}}</p>
+      <button class="delete-button" mat-icon-button color="warn" (click)="deletePerson(person)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </div>
-  
-  <ng-template #noPersons>
-    <div class="no-persons-status">
-      <p>No persons available. Please refresh the site.</p>
-    </div>
-  </ng-template>
-  
+</div>
+
+<ng-template #noPersons>
+  <div class="no-persons-status">
+    <p>No persons available. Please refresh the site.</p>
+  </div>
+</ng-template>

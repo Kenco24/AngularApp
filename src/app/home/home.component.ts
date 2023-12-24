@@ -35,6 +35,13 @@ export class HomeComponent {
     this.refreshPersonList();
   }
 
+  closeForms() {
+  
+    this.isCreateTaskFormVisible = false;
+    this.isCreatePersonFormVisible = false;
+  }
+
+
   private refreshTaskList() {
     this.apiService.getTasks().subscribe(
       (tasks) => {

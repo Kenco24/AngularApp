@@ -4,13 +4,13 @@ button{
     text-align: right;
     margin-left:20px;
     border-radius: 15px;
-    width: 110px;
+    width: 140px;
     height: 30px;
 }
 .arrow-up::after {
-    content: '\25B2'; /* Unicode character for an upward arrow */
+    content: '\25B2';
   }
   
   .arrow-down::after {
-    content: '\25BC'; /* Unicode character for a downward arrow */
+    content: '\25BC'; 
   }

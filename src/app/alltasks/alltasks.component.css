@@ -80,3 +80,8 @@ button{
   top:20px;
   left:20%;
 }
+.edit-button{
+  position: relative;
+  top:20px;
+  left:-20%;
+}

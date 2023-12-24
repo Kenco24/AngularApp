@@ -2,12 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sort-date-button',
-  template: `
-    <button (click)="toggleSortDirection()">
-      Sort by Date
-      <span [class]="sortDirection === 'asc' ? 'arrow-up' : 'arrow-down'"></span>
-    </button>
-  `,
+  templateUrl: './sort-date-button.component.html'
+,
   styleUrls: ['./sort-date-button.component.css']
 })
 export class SortDateButtonComponent {

@@ -2,7 +2,9 @@
   <div class="tasklist-title-container">
     <span class="title">Task List </span>
     <div class="button-container">
-      <button (click)="reloadTasks()">Reload Tasks</button>
+      <button mat-icon-button color="primary" (click)="reloadTasks()">
+        <mat-icon>refresh</mat-icon>
+      </button>
       <app-sort-date-button (sortButtonClick)="handleSortButtonClick($event)"></app-sort-date-button>
       
     </div>
@@ -28,6 +30,9 @@
         <p class="created-date">Created on: {{ task.timeCreated | date:'medium' }}</p>
         <button class="delete-button"mat-icon-button color="warn" (click)="deleteTask(task)">
           <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button class="edit-button" (click)="editTask(task)">
+          <mat-icon>edit</mat-icon>
         </button>
       </div>
       

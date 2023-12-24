@@ -1,4 +1,3 @@
-<!-- button-container.component.html -->
 <div class="container" [class.clicked]="isDropdownOpen">
   <button class="dropbtn" (click)="toggleDropdown()">
     <fa-icon *ngIf="!isIconExpanded" [icon]="faBars"></fa-icon>
@@ -7,7 +6,6 @@
   </button>
   <div class="dropdown-content" [ngClass]="{'slide-down': isDropdownOpen, 'slide-up': !isDropdownOpen}">
     <app-create-task-button (createTaskClick)="createTaskClick.emit()"></app-create-task-button>
-    <app-edit-task-button></app-edit-task-button>
     <app-create-person-button (createPersonClick)="createPersonClick.emit()"></app-create-person-button>
   </div>
 </div>

@@ -17,12 +17,13 @@ import { CreatePersonButtonComponent } from './create-person-button/create-perso
 import { CreatePersonFormComponent } from './create-person-form/create-person-form.component';
 import { CreateTaskButtonComponent } from './create-task-button/create-task-button.component';
 import { CreateTaskFormComponent } from './create-task-form/create-task-form.component';
-import { EditTaskButtonComponent } from './edit-task-button/edit-task-button.component';
-import { EditTaskFormComponent } from './edit-task-form/edit-task-form.component';
+
 import { HomeComponent } from './home/home.component';
 import { SortDateButtonComponent } from './sort-date-button/sort-date-button.component';
 
 import { MyApiService } from './my-api.service';
+import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   providers: [MyApiService],
@@ -36,12 +37,12 @@ import { MyApiService } from './my-api.service';
     CreatePersonFormComponent,
     CreateTaskButtonComponent,
     CreateTaskFormComponent,
-    EditTaskButtonComponent,
-    EditTaskFormComponent,
+    EditTaskDialogComponent,
     HomeComponent,
     SortDateButtonComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,

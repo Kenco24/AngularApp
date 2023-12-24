@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditTaskFormComponent } from './edit-task-form.component';
+import { EditTaskDialogComponent } from './edit-task-dialog.component';
 
-describe('EditTaskFormComponent', () => {
-  let component: EditTaskFormComponent;
-  let fixture: ComponentFixture<EditTaskFormComponent>;
+describe('EditTaskDialogComponent', () => {
+  let component: EditTaskDialogComponent;
+  let fixture: ComponentFixture<EditTaskDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditTaskFormComponent]
+      imports: [EditTaskDialogComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(EditTaskFormComponent);
+    fixture = TestBed.createComponent(EditTaskDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

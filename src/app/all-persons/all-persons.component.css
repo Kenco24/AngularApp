@@ -1,14 +1,24 @@
-/* persons.component.css */
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 10px;
   background-color: green;
-  overflow-y: auto; /* Add this property to enable vertical scrolling */
-  height: 600px; /* Set a fixed height to see the scroll bar, adjust as needed */
+  overflow-y: auto; 
+  height: 600px;
   border:black solid 3px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.header button{
+  position: relative;
+  top:-5px;
+  left:-10%;
+}
 .persons-list {
   margin-top: 20px;
 }
@@ -30,4 +40,14 @@
   background-color: #ffcccc;
   border: 1px solid #f00;
   color: #f00;
+}
+
+button{
+  background-color: green;
+  color:white;
+
+  margin-left:0px;
+  border-radius: 15px;
+  width: 50px;
+  height: 30px;
 }

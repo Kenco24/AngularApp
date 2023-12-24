@@ -17,7 +17,7 @@ export class CreatePersonFormComponent {
   constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {}
   
   onSubmit() {
-    // Use MyApiService to add a new person
+
     this.myApiService.addPerson(this.personFormData).subscribe(
       (response) => {
         console.log('Person created successfully:', response);
@@ -32,8 +32,10 @@ export class CreatePersonFormComponent {
     );
   }
 
+ 
+
   resetForm() {
-    // Reset the form data after submission
+      
     this.personFormData = {};
   }
 
