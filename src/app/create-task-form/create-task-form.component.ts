@@ -12,12 +12,17 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
   @Input() showForm: boolean = false;
   @Output() formSubmitted = new EventEmitter<any>();
 
+
   persons: any[] = [];
   private addTaskSubscription: Subscription | undefined;
 
   constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {
+ ngOnInit(): void {
+    this.loadPeople();
+  }
+
+  loadPeople(): void {
     this.myApiService.getPersons().subscribe(
       (persons) => {
         this.persons = persons;

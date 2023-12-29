@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CreatePersonFormComponent {
   @Input() showForm: boolean = false;
   @Output() formSubmitted = new EventEmitter<any>();
+  @Output() personCreated = new EventEmitter<any>();
 
   personFormData: any = {};
 
@@ -23,6 +24,7 @@ export class CreatePersonFormComponent {
         console.log('Person created successfully:', response);
         this.showSnackbar('Person created successfully');
         this.formSubmitted.emit(this.personFormData);
+        this.personCreated.emit();
         this.resetForm();
       },
       (error) => {

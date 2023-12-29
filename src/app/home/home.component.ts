@@ -1,6 +1,8 @@
 // home.component.ts
-import { Component } from '@angular/core';
+import { Component,ViewChild} from '@angular/core';
 import { MyApiService } from '../my-api.service';
+import { CreateTaskFormComponent } from '../create-task-form/create-task-form.component';
+import { AllPersonsComponent } from '../all-persons/all-persons.component';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,7 @@ import { MyApiService } from '../my-api.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  @ViewChild(CreateTaskFormComponent) createTaskFormComponent!: CreateTaskFormComponent;
   constructor(private apiService: MyApiService) {}
 
   isCreateTaskFormVisible: boolean = false; 
@@ -33,12 +36,14 @@ export class HomeComponent {
   createPerson() {
     this.isCreatePersonFormVisible = false;
     this.refreshPersonList();
+    this.createTaskFormComponent.loadPeople();
   }
 
   closeForms() {
   
     this.isCreateTaskFormVisible = false;
     this.isCreatePersonFormVisible = false;
+    this.createTaskFormComponent.loadPeople();
   }
 
 
