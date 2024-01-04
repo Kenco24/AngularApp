@@ -28,16 +28,16 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
   }
 
   loadPeople(): void {
-    this.myApiService.getPersons().subscribe(
-      (persons) => {
+    this.myApiService.getPersons().subscribe({
+      next: (persons) => {
         this.persons = persons;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching persons:', error);
       }
-    );
+    });
   }
-
+  
   onSubmit() {
     const newTaskRequest = {
       task: this.taskFormData.task,
@@ -46,23 +46,24 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
       name: this.taskFormData.name
     };
     console.log(newTaskRequest);
-
+  
     if (this.addTaskSubscription) {
       this.addTaskSubscription.unsubscribe();
     }
-
-    this.addTaskSubscription = this.myApiService.addTask(newTaskRequest).subscribe(
-      (response) => {
+  
+    this.addTaskSubscription = this.myApiService.addTask(newTaskRequest).subscribe({
+      next: (response) => {
         console.log('Task created successfully:', response);
         this.showSnackbar('Task created successfully');
         this.formSubmitted.emit(this.taskFormData);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error creating task:', error);
         this.showSnackbar('Error creating task. Please try again.');
       }
-    );
+    });
   }
+  
 
   ngOnDestroy(): void {
     if (this.addTaskSubscription) {

@@ -22,23 +22,25 @@ export class CreatePersonFormComponent {
   };
 
   constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {}
-
+  
   onSubmit() {
     console.log(this.personFormData);
-    this.myApiService.addPerson(this.personFormData).subscribe(
-      (response) => {
-        console.log('Person created successfully:', response);
-        this.showSnackbar('Person created successfully');
-        this.formSubmitted.emit(this.personFormData);
-        this.personCreated.emit();
-        this.resetForm();
-      },
-      (error) => {
-        console.error('Error creating person:', error);
-        this.showSnackbar('Error creating person. Please try again.');
-      }
-    );
+    this.myApiService.addPerson(this.personFormData)
+      .subscribe({
+        next: (response) => {
+          console.log('Person created successfully:', response);
+          this.showSnackbar('Person created successfully');
+          this.formSubmitted.emit(this.personFormData);
+          this.personCreated.emit();
+          this.resetForm();
+        },
+        error: (error) => {
+          console.error('Error creating person:', error);
+          this.showSnackbar('Error creating person. Please try again.');
+        }
+      });
   }
+  
 
   resetForm() {
     this.personFormData = {
