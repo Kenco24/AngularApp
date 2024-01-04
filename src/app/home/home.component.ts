@@ -1,4 +1,4 @@
-// home.component.ts
+
 import { Component,ViewChild} from '@angular/core';
 import { MyApiService } from '../my-api.service';
 import { CreateTaskFormComponent } from '../create-task-form/create-task-form.component';
@@ -11,6 +11,7 @@ import { AllPersonsComponent } from '../all-persons/all-persons.component';
 })
 export class HomeComponent {
   @ViewChild(CreateTaskFormComponent) createTaskFormComponent!: CreateTaskFormComponent;
+  
   constructor(private apiService: MyApiService) {}
 
   isCreateTaskFormVisible: boolean = false; 

@@ -1,68 +1,62 @@
+// my-api.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Task } from './models/task';
+import { Person } from './models/person';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyApiService {
-  private tasksUrl = 'http://localhost:8080/myAPI/tasks'; 
+  private apiUrl = 'http://localhost:8080/myAPI';
+
+  private tasksUrl = `${this.apiUrl}/tasks`;
+  private personsUrl = `${this.apiUrl}/person`;
 
   constructor(private http: HttpClient) {}
 
-  // Get all tasks
-  getTasks(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.tasksUrl}`);
+  // Tasks
+
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.tasksUrl);
   }
 
-  // Add a new task
-  addTask(request: any): Observable<any> {
-    return this.http.post<any>(`${this.tasksUrl}`, request);
+  addTask(request: Task): Observable<Task> {
+    return this.http.post<Task>(this.tasksUrl, request);
   }
 
-  // Delete a task by ID
   deleteTask(taskId: number): Observable<void> {
     return this.http.delete<void>(`${this.tasksUrl}/${taskId}`);
   }
 
-  // Update a task by ID
-  editTask(taskId: number, request: any): Observable<void> {
+  editTask(taskId: number, request: Task): Observable<void> {
     return this.http.put<void>(`${this.tasksUrl}/${taskId}`, request);
   }
 
-  // Retrieve a task by ID
-  retrieveTask(taskId: number): Observable<any> {
-    return this.http.get<any>(`${this.tasksUrl}/${taskId}`);
+  retrieveTask(taskId: number): Observable<Task> {
+    return this.http.get<Task>(`${this.tasksUrl}/${taskId}`);
   }
 
+  // Persons
 
-  private personUrl = 'http://localhost:8080/myAPI/person'; 
-
-
-
-  // Get all persons
-  getPersons(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.personUrl}`);
+  getPersons(): Observable<Person[]> {
+    return this.http.get<Person[]>(this.personsUrl);
   }
 
-  // Add a new person
-  addPerson(request: any): Observable<any> {
-    return this.http.post<any>(`${this.personUrl}`, request);
+  addPerson(request: Person): Observable<Person> {
+    return this.http.post<Person>(this.personsUrl, request);
   }
 
-  // Delete a person by ID
   deletePerson(personId: number): Observable<void> {
-    return this.http.delete<void>(`${this.personUrl}/${personId}`);
+    return this.http.delete<void>(`${this.personsUrl}/${personId}`);
   }
 
-  // Update a person by ID
-  editPerson(personId: number, request: any): Observable<void> {
-    return this.http.put<void>(`${this.personUrl}/${personId}`, request);
+  editPerson(personId: number, request: Person): Observable<void> {
+    return this.http.put<void>(`${this.personsUrl}/${personId}`, request);
   }
 
-  // Retrieve a person by ID
-  retrievePerson(personId: number): Observable<any> {
-    return this.http.get<any>(`${this.personUrl}/${personId}`);
+  retrievePerson(personId: number): Observable<Person> {
+    return this.http.get<Person>(`${this.personsUrl}/${personId}`);
   }
-
 }

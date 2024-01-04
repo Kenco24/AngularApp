@@ -1,24 +1,42 @@
-<div class="wrapper">
-  <form *ngIf="showForm" (ngSubmit)="onSubmit(form.value)" #form="ngForm" class="create-task-form">
-    <div style="text-align:center"><strong>Creating task</strong></div>
+
+<div *ngIf="showForm" class="create-task-form">
+  <h2 class="form-title">Creating Task</h2>
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="person">Select Person:</label>
-      <select id="person" class="person-select" name="personName" ngModel required>
+      <select id="person" class="person-select" name="personName" [(ngModel)]="taskFormData.name" required>
         <option *ngFor="let person of persons" [value]="person.name">{{ person.name }}</option>
       </select>
     </div>
+
     <div class="form-group">
       <label for="task">Task:</label>
-      <textarea id="task" name="task" ngModel required placeholder="e.g., I don't know ? Create some app"></textarea>
+      <textarea id="task" name="task" [(ngModel)]="taskFormData.task" required minlength="3" maxlength="20"></textarea>
+      <div class="error-message" *ngIf="form.controls['task']?.invalid && (form.controls['task']?.dirty || form.controls['task']?.touched)">
+        <div *ngIf="form.controls['task']?.errors?.['required']">Task is required.</div>
+        <div *ngIf="form.controls['task']?.errors?.['minlength']">Task should be at least 3 characters.</div>
+        <div *ngIf="form.controls['task']?.errors?.['maxlength']">Task cannot exceed 20 characters.</div>
+      </div>
     </div>
+
     <div class="form-group">
       <label for="description">Description:</label>
-      <textarea id="description" name="description" ngModel required placeholder="e.g., Specify main features of the 'app'"></textarea>
+      <textarea id="description" name="description" [(ngModel)]="taskFormData.description" required minlength="3" maxlength="200"></textarea>
+      <div class="error-message" *ngIf="form.controls['description']?.invalid && (form.controls['description']?.dirty || form.controls['description']?.touched)">
+        <div *ngIf="form.controls['description']?.errors?.['required']">Description is required.</div>
+        <div *ngIf="form.controls['description']?.errors?.['minlength']">Description should be at least 3 characters.</div>
+        <div *ngIf="form.controls['description']?.errors?.['maxlength']">Description cannot exceed 200 characters.</div>
+      </div>
     </div>
+
     <div class="form-group">
       <label for="dueDate">Due Date:</label>
-      <input type="date" id="dueDate" name="dueDate" ngModel required >
+      <input type="date" id="dueDate" name="dueDate" [(ngModel)]="taskFormData.dueDate" required>
+      <div class="error-message" *ngIf="form.controls['dueDate']?.invalid && (form.controls['dueDate']?.dirty || form.controls['dueDate']?.touched)">
+        <div *ngIf="form.controls['dueDate']?.errors?.['required']">Due date is required.</div>
+      </div>
     </div>
-    <button type="submit">Create Task</button>
+
+    <button type="submit" [disabled]="!form.valid">Create Task</button>
   </form>
 </div>

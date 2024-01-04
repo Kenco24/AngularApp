@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MyApiService } from '../my-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Person } from '../models/person';
 
 @Component({
   selector: 'app-create-person-form',
@@ -13,12 +14,17 @@ export class CreatePersonFormComponent {
   @Output() formSubmitted = new EventEmitter<any>();
   @Output() personCreated = new EventEmitter<any>();
 
-  personFormData: any = {};
+  personFormData: Person = {
+    name: '',
+    phone: '',
+    location: '',
+    email: '' 
+  };
 
   constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {}
-  
-  onSubmit() {
 
+  onSubmit() {
+    console.log(this.personFormData);
     this.myApiService.addPerson(this.personFormData).subscribe(
       (response) => {
         console.log('Person created successfully:', response);
@@ -34,11 +40,13 @@ export class CreatePersonFormComponent {
     );
   }
 
- 
-
   resetForm() {
-      
-    this.personFormData = {};
+    this.personFormData = {
+      name: '',
+      phone: '',
+      location: '',
+      email: ''
+    };
   }
 
   private showSnackbar(message: string): void {

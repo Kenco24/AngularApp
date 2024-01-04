@@ -1,22 +1,44 @@
-<div class="wrapper">
-  <form *ngIf="showForm" (ngSubmit)="onSubmit()" #form="ngForm" class="create-person-form">
-    <div style="text-align:center"><strong>Create Person</strong></div>
+
+<div *ngIf="showForm" class="create-person-form">
+  <h2 class="form-title">Add New Person</h2>
+  <form #personForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="personFormData.name" required placeholder="e.g., Bob">
+      <input type="text" id="name" name="name" [(ngModel)]="personFormData.name" required minlength="3" maxlength="20">
+      <div class="error-message" *ngIf="personForm.controls['name']?.invalid && (personForm.controls['name']?.dirty || personForm.controls['name']?.touched)">
+        <div *ngIf="personForm.controls['name']?.errors?.['required']">Name is required.</div>
+        <div *ngIf="personForm.controls['name']?.errors?.['minlength']">Name should be at least 3 characters.</div>
+        <div *ngIf="personForm.controls['name']?.errors?.['maxlength']">Name cannot exceed 20 characters.</div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="phone">Phone:</label>
-      <input type="text" id="phone" name="phone" [(ngModel)]="personFormData.phone" required placeholder="e.g., 123-456-789">
-    </div>
+
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="personFormData.email" placeholder="e.g., example@example.com">
+      <input type="email" id="email" name="email" [(ngModel)]="personFormData.email" required email>
+      <div class="error-message" *ngIf="personForm.controls['email']?.invalid && (personForm.controls['email']?.dirty || personForm.controls['email']?.touched)">
+        <div *ngIf="personForm.controls['email']?.errors?.['required']">Email is required.</div>
+        <div *ngIf="personForm.controls['email']?.errors?.['email']">Invalid email format.</div>
+      </div>
     </div>
+
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" [(ngModel)]="personFormData.phone" pattern="[0-9]{3} [0-9]{3} [0-9]{3}" required>
+      <div class="error-message" *ngIf="personForm.controls['phone']?.invalid && (personForm.controls['phone']?.dirty || personForm.controls['phone']?.touched)">
+          <div *ngIf="personForm.controls['phone']?.errors?.['required']">Phone is required.</div>
+          <div *ngIf="personForm.controls['phone']?.errors?.['pattern']">Invalid phone number (should be in the format 123 456 789).</div>
+      </div>
+    </div>
+    
+
     <div class="form-group">
       <label for="location">Location:</label>
-      <input type="text" id="location" name="location" [(ngModel)]="personFormData.location" required placeholder="e.g., City, Country">
+      <input type="text" id="location" name="location" [(ngModel)]="personFormData.location" required>
+      <div class="error-message" *ngIf="personForm.controls['location']?.invalid && (personForm.controls['location']?.dirty || personForm.controls['location']?.touched)">
+        <div *ngIf="personForm.controls['location']?.errors?.['required']">Location is required.</div>
+      </div>
     </div>
-    <button type="submit">Create Person</button>
+
+    <button type="submit" [disabled]="!personForm.valid">Add Person</button>
   </form>
 </div>

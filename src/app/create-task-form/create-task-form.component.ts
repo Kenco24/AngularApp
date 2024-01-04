@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, Output, OnDestroy, OnInit } from '@angu
 import { MyApiService } from '../my-api.service';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Task } from '../models/task'; 
+
+
 
 @Component({
   selector: 'app-create-task-form',
@@ -12,13 +15,15 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
   @Input() showForm: boolean = false;
   @Output() formSubmitted = new EventEmitter<any>();
 
-
   persons: any[] = [];
   private addTaskSubscription: Subscription | undefined;
+  taskFormData: Task = { name: '', task: '', description: '', dueDate: '' };
+
+
 
   constructor(private myApiService: MyApiService, private snackBar: MatSnackBar) {}
 
- ngOnInit(): void {
+  ngOnInit(): void {
     this.loadPeople();
   }
 
@@ -33,13 +38,14 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
     );
   }
 
-  onSubmit(formValue: any) {
+  onSubmit() {
     const newTaskRequest = {
-      task: formValue.task,
-      description: formValue.description,
-      dueDate: formValue.dueDate,
-      name: formValue.personName
+      task: this.taskFormData.task,
+      description: this.taskFormData.description,
+      dueDate: this.taskFormData.dueDate,
+      name: this.taskFormData.name
     };
+    console.log(newTaskRequest);
 
     if (this.addTaskSubscription) {
       this.addTaskSubscription.unsubscribe();
@@ -49,7 +55,7 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
       (response) => {
         console.log('Task created successfully:', response);
         this.showSnackbar('Task created successfully');
-        this.formSubmitted.emit(formValue);
+        this.formSubmitted.emit(this.taskFormData);
       },
       (error) => {
         console.error('Error creating task:', error);
@@ -66,9 +72,10 @@ export class CreateTaskFormComponent implements OnInit, OnDestroy {
 
   private showSnackbar(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 3000, 
+      duration: 3000,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
     });
   }
+
 }
